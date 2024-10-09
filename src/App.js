@@ -1,11 +1,11 @@
-import React from 'react'
-import Bloc from './components/Bloc'
+import React, { useState } from 'react'
 function App() {
+  const [value, setValue]= useState(0)
   return (
     <div>
-     <Bloc CL="red" />
-     <Bloc CL="blue" />
-     <Bloc CL="green" />
+      <div>{value}</div>
+    <button onClick={()=>setValue(value+1)}>Inc</button>
+    <button onClick={()=>setValue(value-1)}>Dec</button>
     </div>
   )
 }
