@@ -1,11 +1,31 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+
 function App() {
-  const [value, setValue]= useState(0)
+  const [products, setProducts]=useState([])
+  useEffect(()=>{
+    fetch(`https://fakestoreapi.com/products`)
+            .then(res=>res.json())
+            .then(json=>setProducts(json))
+  })
   return (
-    <div>
-      <div>{value}</div>
-    <button onClick={()=>setValue(value+1)}>Inc</button>
-    <button onClick={()=>setValue(value-1)}>Dec</button>
+    <div className='App' >
+      <table>
+        <thead>
+          
+          <th>Title</th>
+
+        </thead>
+        <tbody>
+        
+            {products.map(product=>(
+                <tr>
+              <td>{product.title}</td>
+              </tr>
+            ))}
+            
+         
+        </tbody>
+      </table>
     </div>
   )
 }
