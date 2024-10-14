@@ -1,7 +1,36 @@
 import React, { useEffect, useState } from 'react'
-
+import { DatePicker } from 'antd'
+import { Table } from 'antd';
 function App() {
   const [products, setProducts]=useState([])
+  const columns = [
+    {
+      title: 'title',
+      dataIndex: 'title',
+      key: 'title',
+    },
+    {
+      title: ' price',
+      dataIndex: ' price',
+      key: ' price',
+    },
+    {
+      title: 'category',
+      dataIndex: 'category',
+      key: 'category',
+    },
+    {
+      title: ' description',
+      dataIndex: ' description',
+      key: ' description',
+    },
+    {
+      title: ' image',
+      dataIndex: 'image',
+      key: 'image',
+    },
+  ];
+
   useEffect(()=>{
     fetch(`https://fakestoreapi.com/products`)
             .then(res=>res.json())
@@ -9,23 +38,9 @@ function App() {
   })
   return (
     <div className='App' >
-      <table>
-        <thead>
-          
-          <th>Title</th>
-
-        </thead>
-        <tbody>
-        
-            {products.map(product=>(
-                <tr>
-              <td>{product.title}</td>
-              </tr>
-            ))}
-            
-         
-        </tbody>
-      </table>
+       <Table columns={columns} />
+     
+      
     </div>
   )
 }
