@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Table } from 'antd';
+import { Image } from 'antd'
 function App() {
   const [products, setProducts]=useState([])
   const columns = [
@@ -18,7 +19,15 @@ function App() {
       title: ' Image',
       dataIndex: 'image',
       key: 'image',
-      render: (image) => <img src={image} alt="Product" style={{ width: 100}} />,
+      render:(_,record)=>{
+        return (<Image
+          width={100}
+          src={record.image}
+          alt={record.title}
+        />
+
+        )}
+
     },
     {
       title: 'Price',
