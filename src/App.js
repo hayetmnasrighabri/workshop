@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import { Table } from 'antd';
+import { Rate, Table } from 'antd';
 import { Image } from 'antd'
+
 function App() {
   const [products, setProducts]=useState([])
   const columns = [
@@ -34,6 +35,14 @@ function App() {
       dataIndex: 'price',
       key: 'price',
     },
+    {
+      title: ' Rating',
+      dataIndex: 'rating',
+      key: 'rating',
+      render:(_,record)=>{
+        return <Rate allowHalf defaultValue={record?.rating?.rate} />
+      }
+    }
   ];
 
   useEffect(()=>{
