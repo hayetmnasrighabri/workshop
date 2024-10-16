@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { Rate, Table } from 'antd';
 import { Image } from 'antd'
-
+import { BsTrash } from "react-icons/bs";
 function App() {
   const [products, setProducts]=useState([])
+  const Deletehandler=(id)=>{
+    setProducts(products.filter(p=>p.id!=id))
+
+  }
   const columns = [
     {
       title: 'Title',
@@ -40,7 +44,17 @@ function App() {
       dataIndex: 'rating',
       key: 'rating',
       render:(_,record)=>{
-        return <Rate allowHalf defaultValue={record?.rating?.rate} />
+        return <Rate allowHalf disabled={true} defaultValue={record?.rating?.rate} />
+      }
+    },
+    {
+      title: 'Actions',
+      dataIndex: 'id',
+      key: 'id',
+      render: (_,{id})=>{
+        return <BsTrash style={{fontSize:"25px", color:"red", cursor:"pointer"}}
+            onClick={()=>Deletehandler(id)}
+            />
       }
     }
   ];
@@ -50,6 +64,8 @@ function App() {
             .then(res=>res.json())
             .then(json=>setProducts(json))
   },[])
+
+  
   return (
     <div className='App' >
        <Table dataSource={products} columns={columns} />
