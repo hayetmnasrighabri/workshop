@@ -2,11 +2,12 @@ import React, { useEffect, useState } from 'react'
 import { Rate, Table } from 'antd';
 import { Image } from 'antd'
 import { BsTrash } from "react-icons/bs";
+import { message } from "antd";
 function App() {
   const [products, setProducts]=useState([])
-  const Deletehandler=(id)=>{
-    setProducts(products.filter(p=>p.id!=id))
-
+  const Deletehandler=async(id)=>{
+   await setProducts(products.filter(p => p.id != id))
+    message.success("product delete")
   }
   const columns = [
     {
